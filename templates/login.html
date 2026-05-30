@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskForge - Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:
+            linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.9)),
+            url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            overflow:hidden;
+        }
+
+        .container{
+            width:1000px;
+            height:600px;
+            display:flex;
+            border-radius:25px;
+            overflow:hidden;
+            backdrop-filter:blur(15px);
+            background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.1);
+            box-shadow:0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .left{
+            flex:1;
+            padding:60px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            color:white;
+            background:rgba(255,255,255,0.03);
+        }
+
+        .logo{
+            font-size:38px;
+            font-weight:700;
+            margin-bottom:20px;
+            color:#38bdf8;
+        }
+
+        .tagline{
+            font-size:18px;
+            line-height:1.8;
+            color:#cbd5e1;
+            max-width:400px;
+        }
+
+        .features{
+            margin-top:40px;
+        }
+
+        .feature{
+            margin-bottom:18px;
+            font-size:15px;
+            color:#e2e8f0;
+        }
+
+        .right{
+            flex:1;
+            background:rgba(15,23,42,0.85);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:50px;
+        }
+
+        .login-box{
+            width:100%;
+            max-width:360px;
+        }
+
+        .login-box h2{
+            color:white;
+            font-size:34px;
+            margin-bottom:10px;
+        }
+
+        .login-box p{
+            color:#94a3b8;
+            margin-bottom:35px;
+        }
+
+        .input-box{
+            margin-bottom:22px;
+        }
+
+        .input-box label{
+            display:block;
+            margin-bottom:8px;
+            color:#cbd5e1;
+            font-size:14px;
+        }
+
+        .input-box input{
+            width:100%;
+            padding:15px;
+            border:none;
+            outline:none;
+            border-radius:12px;
+            background:#1e293b;
+            color:white;
+            font-size:15px;
+        }
+
+        .options{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+            font-size:14px;
+            color:#cbd5e1;
+        }
+
+        .options a{
+            color:#38bdf8;
+            text-decoration:none;
+        }
+
+        .login-btn{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            background:linear-gradient(135deg,#2563eb,#38bdf8);
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .bottom-text{
+            margin-top:25px;
+            text-align:center;
+            color:#94a3b8;
+            font-size:14px;
+        }
+
+        .bottom-text a{
+            color:#38bdf8;
+            text-decoration:none;
+        }
+
+        @media(max-width:900px){
+
+            .container{
+                flex-direction:column;
+                width:95%;
+                height:auto;
+            }
+
+            .left{
+                display:none;
+            }
+
+            .right{
+                width:100%;
+                padding:40px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="left">
+
+            <div class="logo">
+                TaskForge
+            </div>
+
+            <div class="tagline">
+                Streamline your workflow, manage projects efficiently,
+                and collaborate securely with your team in one modern workspace.
+            </div>
+
+            <div class="features">
+
+                <div class="feature">
+                    ✅ Smart Task Management
+                </div>
+
+                <div class="feature">
+                    🔒 Secure Cloud Workspace
+                </div>
+
+                <div class="feature">
+                    📊 Team Collaboration & Analytics
+                </div>
+
+                <div class="feature">
+                    🚀 DevOps Integrated Platform
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="login-box">
+
+                <h2>Welcome Back</h2>
+
+                <p>Login to continue managing your workspace.</p>
+
+                <form method="POST">
+
+                    <div class="input-box">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="options">
+
+                        <label>
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+
+                        <a href="/forgot-password">Forgot Password?</a>
+
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        Login to Dashboard
+                    </button>
+
+                </form>
+
+                <div class="bottom-text">
+                    Don't have an account?
+                    <a href="/register">Create Account</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

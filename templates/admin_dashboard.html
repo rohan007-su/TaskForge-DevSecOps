@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskForge Admin Dashboard</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+            padding-bottom:50px;
+        }
+
+        .navbar{
+            background:#1e293b;
+            padding:20px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:30px;
+            font-weight:bold;
+            color:#38bdf8;
+        }
+
+        .logout-btn{
+            background:#ef4444;
+            color:white;
+            text-decoration:none;
+            padding:10px 18px;
+            border-radius:10px;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            margin-top:40px;
+        }
+
+        h1{
+            color:#38bdf8;
+            margin-bottom:30px;
+        }
+
+        .section{
+            background:#1e293b;
+            padding:30px;
+            border-radius:20px;
+            margin-bottom:40px;
+        }
+
+        .section h2{
+            margin-bottom:20px;
+            color:#38bdf8;
+        }
+
+        .task-form input,
+        .task-form textarea,
+        .task-form select{
+            width:100%;
+            padding:14px;
+            margin-bottom:20px;
+            border:none;
+            border-radius:10px;
+            background:#0f172a;
+            color:white;
+        }
+
+        .task-form button{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#2563eb;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th, td{
+            padding:16px;
+            border-bottom:1px solid #334155;
+            text-align:left;
+        }
+
+        th{
+            background:#2563eb;
+        }
+
+        .action-btn{
+            padding:8px 14px;
+            border-radius:8px;
+            text-decoration:none;
+            color:white;
+            display:inline-block;
+            margin-right:8px;
+        }
+
+        .approve-btn{
+            background:#22c55e;
+        }
+
+        .reject-btn{
+            background:#f59e0b;
+        }
+
+        .delete-btn{
+            background:#ef4444;
+        }
+
+        .view-btn{
+            background:#2563eb;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            TaskForge Admin
+        </div>
+
+        <a href="/logout" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+    <div class="container">
+
+        <h1>Admin Dashboard</h1>
+
+        <!-- ASSIGN TASK -->
+
+        <div class="section">
+
+            <h2>Assign Task</h2>
+
+            <form action="/add-task"
+                  method="POST"
+                  class="task-form">
+
+                <select name="user_email" required>
+
+                    <option value="">
+                        Select User
+                    </option>
+
+                    {% for user in users %}
+
+                    <option value="{{ user[2] }}">
+                        {{ user[1] }} ({{ user[2] }})
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+                <input type="text"
+                       name="title"
+                       placeholder="Task Title"
+                       required>
+
+                <textarea name="description"
+                          rows="5"
+                          placeholder="Task Description"
+                          required></textarea>
+
+                <button type="submit">
+                    Assign Task
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- USERS -->
+
+        <div class="section">
+
+            <h2>All Users</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+
+                </tr>
+
+                {% for user in users %}
+
+                <tr>
+
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[4] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- TASKS -->
+
+        <div class="section">
+
+            <h2>All Tasks</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Proof</th>
+                    <th>Actions</th>
+
+                </tr>
+
+                {% for task in tasks %}
+
+                <tr>
+
+                    <td>{{ task[0] }}</td>
+
+                    <td>
+
+                        {% if task[1] %}
+                            {{ task[1] }}
+                        {% else %}
+                            Unknown User
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{ task[2] }}</td>
+
+                    <td>{{ task[4] }}</td>
+
+                    <td>
+
+                        {% if task[5] %}
+
+                        <a href="/static/uploads/{{ task[5] }}"
+                           target="_blank"
+                           class="action-btn view-btn">
+
+                            View File
+
+                        </a>
+
+                        {% else %}
+
+                        No File
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if task[4] == 'Submitted' %}
+
+                        <a href="/approve-task/{{ task[0] }}"
+                           class="action-btn approve-btn">
+
+                            Approve
+
+                        </a>
+
+                        <a href="/reject-task/{{ task[0] }}"
+                           class="action-btn reject-btn">
+
+                            Reject
+
+                        </a>
+
+                        {% endif %}
+
+                        <a href="/delete-task/{{ task[0] }}"
+                           class="action-btn delete-btn">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

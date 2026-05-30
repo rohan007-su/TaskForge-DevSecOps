@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskForge - Register</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.95)),
+            url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+        }
+
+        .register-box{
+            width:420px;
+            padding:40px;
+            background:rgba(15,23,42,0.92);
+            border-radius:20px;
+            box-shadow:0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        h2{
+            color:white;
+            text-align:center;
+            margin-bottom:10px;
+            font-size:32px;
+        }
+
+        p{
+            color:#94a3b8;
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .input-box{
+            margin-bottom:20px;
+        }
+
+        .input-box label{
+            color:#cbd5e1;
+            display:block;
+            margin-bottom:8px;
+        }
+
+        .input-box input{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#1e293b;
+            color:white;
+            outline:none;
+        }
+
+        .register-btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:linear-gradient(135deg,#2563eb,#38bdf8);
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .bottom-text{
+            margin-top:20px;
+            text-align:center;
+            color:#94a3b8;
+        }
+
+        .bottom-text a{
+            color:#38bdf8;
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-box">
+
+        <h2>Create Account</h2>
+
+        <p>Join TaskForge and manage tasks efficiently.</p>
+
+        <form method="POST">
+
+            <div class="input-box">
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+            </div>
+
+            <div class="input-box">
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="input-box">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <div class="bottom-text">
+            Already have an account?
+            <a href="/">Login</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
